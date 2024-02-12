@@ -144,7 +144,7 @@ data/*
 
 # mkdocs documentation
 /site
-
+multirun
 # mypy
 .mypy_cache/
 .dmypy.json

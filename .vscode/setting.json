@@ -1,0 +1,39 @@
+{
+    "[python]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.organizeImports.ruff": true,
+      "source.fixAll.ruff": true,
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "python.defaultInterpreterPath": "${workspaceFolder}/src/.venv/bin/python",
+  "ruff.path": [
+    "${workspaceFolder}/src/.venv/bin/ruff"
+  ],
+
+  "python.sortImports.path": "${workspaceFolder}/.venv/bin/isort",
+  "ruff.lint.args": [
+    "--config=${workspaceFolder}/pyproject.toml",
+  ],
+  "mypy-type-checker.path": [
+    "${workspaceFolder}/src/.venv/bin/mypy"
+  ],
+  "mypy-type-checker.args": [
+    "--config=${workspaceFolder}/pyproject.toml"
+  ],
+  "python.analysis.autoImportCompletions": true,
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.extraPaths": [
+    "${workspaceFolder}/src/.venv/lib/python3.10/site-packages/",
+    "${workspaceFolder}/src/src_impl/"
+  ],
+  "python.autoComplete.extraPaths": [
+    "${workspaceFolder}/src/.venv/lib/python3.10/site-packages/",
+    "${workspaceFolder}/src/src_impl/"
+  ],
+  "python.testing.pytestArgs": [
+    "src/tests"
+  ],
+  "python.testing.unittestEnabled": false,
+  "python.testing.pytestEnabled": true}

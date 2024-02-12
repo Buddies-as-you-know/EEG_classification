@@ -1,0 +1,29 @@
+model_config:
+    name: "EEGConformer"
+    n_chans: 32
+    n_classes: 2
+    n_times: 1000
+    sfreq: 1000
+
+train_config:
+    epochs: 10000
+    batch_size: 1024
+    optimizer: 
+        type: AdamW
+        params:
+            lr: 1e-5
+            weight_decay: 0.01
+            amsgrad: True
+    loss_fn: BinaryCrossEntropy
+    scheduler:
+            type: ExponentialLR
+            gamma: 9e-1
+    
+flip: False
+data_dir: "./data/row/mat"
+edf_dir: "./data/row/edf"
+validation_name: "TDV"
+sfreq: 1000
+output_dir: "results/"
+wandb_projrct: "EEGConformer"
+wandb_name: "EEGConformer_TDV"

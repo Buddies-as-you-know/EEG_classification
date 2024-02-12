@@ -4,6 +4,7 @@ __pycache__
 .mypy_cache
 .pytest_cache
 .venv
+.multirun
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -144,7 +145,7 @@ data/*
 
 # mkdocs documentation
 /site
-multirun
+multirun/*
 # mypy
 .mypy_cache/
 .dmypy.json

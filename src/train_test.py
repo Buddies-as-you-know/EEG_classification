@@ -88,9 +88,9 @@ def sdtdv(cfg: omegaconf.dictconfig.DictConfig) -> None:
             clf = initialize_and_fit_clf(cfg, train_set, val_set)
             score_test_data(
                 clf,
-                {subj: test_data[subj]},
-                {subj: test_labels[subj]},
-                test_data,
+                test_data, 
+                test_labels,
+                test_date,
                 cfg,
             )
 
@@ -120,6 +120,8 @@ def score_test_data(
         )
         y_test = test_set.get_metadata().target
         pred = clf.predict(test_set)
+        print(f"{set(y_test)} {pred.tolist()}")
+        logger.info(f"{set(y_test)} {set(pred.tolist())}")
         acc = accuracy_score(y_test, pred)
         f1 = f1_score(y_test, pred)
         roc_auc = roc_auc_score(y_test, pred)

@@ -1,5 +1,5 @@
 model_config:
-    name: "EEGConformer"
+    name: "EEGNet"
     n_chans: 32
     n_classes: 2
     n_times: 1000
@@ -22,7 +22,7 @@ train_config:
 flip: False
 data_dir: "./data/row/mat"
 edf_dir: "./data/row/edf"
-validation_name: "TDV"
+validation_name: "SDTDV"
 sfreq: 1000
 output_dir: "results/"
 wandb_projrct: "EEGConformer"

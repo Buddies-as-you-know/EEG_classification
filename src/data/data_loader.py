@@ -142,6 +142,7 @@ class TrainTestDasetCreate:
                 self.dual_dataset_verification()
             case Validation.TV.name:
                 self.temporal_verification()
+                print(len(self.train_dataset))
             case Validation.SDTDV.name:
                 self.subject_dependent_tri_dataset_verification(subj=subj)
             case _:
@@ -212,13 +213,18 @@ class TrainTestDasetCreate:
         """
         Perform temporal verification.
         """
-        for subj in range(1, 26):
-            data, labels = self.change_mat_mne(subj, self.target_date)
-            self.test_dataset[subj].extend(data[20:])
-            self.test_labels[subj].extend(labels[20:])
-            self.train_dataset.extend(data[:20])
-            self.train_labels.extend(labels[:20])
-
+        for i in range(10):
+            """
+            Since the data is small, we will expand it by inserting the same data.
+            Since the data is the same, there is no effect on learning.
+            """
+            for subj in range(1, 26):
+                data, labels = self.change_mat_mne(subj, self.target_date)
+                if i == 0:
+                    self.test_dataset[subj].extend(data[20:])
+                    self.test_labels[subj].extend(labels[20:])
+                self.train_dataset.extend(data[:20])
+                self.train_labels.extend(labels[:20])
     def subject_dependent_tri_dataset_verification(
         self, subj: int = None
     ) -> None:
@@ -233,21 +239,26 @@ class TrainTestDasetCreate:
         """
         if subj is None:
             raise ValueError("Subject ID must be provided.")
-        for session in range(1, 6):
-            data, labels = self.change_mat_mne(subj, session)
-            if session == self.target_date:
-                self.test_dataset[subj].extend(data)
-                self.test_labels[subj].extend(labels)
-            else:
-                self.train_dataset.extend(data)
-                self.train_labels.extend(labels)
+        for i in range(10):
+            """
+            Since the data is small, we will expand it by inserting the same data.
+            Since the data is the same, there is no effect on learning.
+            """
+            for session in range(1, 6):
+                data, labels = self.change_mat_mne(subj, session)
+                if session == self.target_date and i == 0:
+                    self.test_dataset[subj].extend(data)
+                    self.test_labels[subj].extend(labels)
+                else:
+                    self.train_dataset.extend(data)
+                    self.train_labels.extend(labels)
 
 
 if __name__ == "__main__":
     dataset = TrainTestDasetCreate(
         data_path="/home/iplslam/EEG_Classification/data/row/mat",
         edf_path="/home/iplslam/EEG_Classification/data/row/edf",
-        validation_name="TDV",
+        validation_name="SDTDV",
         target_date=1,
         sfreq=1000,
         flip=False,

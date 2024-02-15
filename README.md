@@ -173,4 +173,5 @@ To gather data using the `datacollector.py` script, follow these steps:
 - Follow any project-specific configurations or requirements.
 
 Include these steps in your README file to provide clear instructions for using `datacollector.py` in your project.
+- TV and STDDV may cause abnormalities when running because they have little data. In that case, please use jupyternotebook.
 - I am migrating from jupyter note book. We conducted the experiments in our paper in notebook/Nature_analaysis2.ipynb.
